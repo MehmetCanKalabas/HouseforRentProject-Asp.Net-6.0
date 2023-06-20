@@ -1,11 +1,14 @@
-using HouseforRentProject.Models.Context;
+using HouseforRentProject.Models.Concrete;
+using HouseforRentProject.Models.Entity;
+using HouseforRentProject.Models.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddDbContext<Context>();
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<Context>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+builder.Services.AddScoped<VillaService>();
 
 var app = builder.Build();
 

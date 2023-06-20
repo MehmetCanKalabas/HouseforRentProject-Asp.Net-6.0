@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace HouseforRentProject.Models.Context
+namespace HouseforRentProject.Models.Concrete
 {
     public class Context : IdentityDbContext<AppUser,AppRole,int>
     {
