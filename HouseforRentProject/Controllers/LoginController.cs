@@ -30,12 +30,12 @@ namespace HouseforRentProject.Controllers
                 var result = await _signInManager.PasswordSignInAsync(p.Username, p.Password, false, true);
                 if (result.Succeeded)
                 {
-                    if (true) //adminse admin paneline
-                    {
+                    //if () //adminse admin paneline
+                    //{
 
-                    }
-                    //değilse üye olarak anasayfaya
-                    return RedirectToAction("", "");
+                    //}
+                    ////değilse üye olarak anasayfaya
+                    return RedirectToAction("Index","Home");
                 }
                 else
                 {

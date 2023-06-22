@@ -26,6 +26,13 @@ namespace HouseforRentProject.Models.Service
             return all;
         }
 
+        public async Task<Villa> AddVillas(Villa model)
+        {
+            _context.Add(model);
+            await _context.SaveChangesAsync();
+            return model;
+        }
+
         public void VillaUpdate(VillaUpdateViewModel model)
         {
             _context.Update(model);

@@ -1,7 +1,8 @@
-﻿@{
+﻿@model List<Villa>
+
+@{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +24,7 @@
     <link rel="shortcut icon" href="~/PurpleAdmin-Free-Admin-Template-master/PurpleAdmin-Free-Admin-Template-master/assets/images/favicon.ico" />
 </head>
 <body>
-    <div class="container-scroller">        
+    <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -199,88 +200,50 @@
                             <i class="mdi mdi-home menu-icon"></i>
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" href="/Admin/Villas/Index">
                             <span class="menu-title">Villalar</span>
                             <i class="mdi mdi-medical-bag menu-icon"></i>
                         </a>
                     </li>
-                
                 </ul>
             </nav>
             <!-- partial -->
             <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="page-header">
-                        <h3 class="page-title">
-                            <span class="page-title-icon bg-gradient-primary text-white me-2">
-                                <i class="mdi mdi-home"></i>
-                            </span> Dashboard
-                        </h3>                       
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 stretch-card grid-margin">
-                            <div class="card bg-gradient-danger card-img-holder text-white">
-                                <div class="card-body">
-                                    <img src="~/PurpleAdmin-Free-Admin-Template-master/PurpleAdmin-Free-Admin-Template-master/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                                    <h4 class="font-weight-normal mb-3">
-                                        Kiralanan Villa Toplam Tutarı <i class="mdi mdi-chart-line mdi-24px float-right"></i>
-                                    </h4>
-                                    <h2 class="mb-5">$ 15,0000</h2>
-                                    <h6 class="card-text">Increased by 60%</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 stretch-card grid-margin">
-                            <div class="card bg-gradient-info card-img-holder text-white">
-                                <div class="card-body">
-                                    <img src="~/PurpleAdmin-Free-Admin-Template-master/PurpleAdmin-Free-Admin-Template-master/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                                    <h4 class="font-weight-normal mb-3">
-                                        Toplam Kiralanan Villa Sayısı <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
-                                    </h4>
-                                    <h2 class="mb-5">45,6334</h2>
-                                    <h6 class="card-text">Decreased by 10%</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 stretch-card grid-margin">
-                            <div class="card bg-gradient-success card-img-holder text-white">
-                                <div class="card-body">
-                                    <img src="~/PurpleAdmin-Free-Admin-Template-master/PurpleAdmin-Free-Admin-Template-master/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                                    <h4 class="font-weight-normal mb-3">
-                                        Toplam Üye <i class="mdi mdi-diamond mdi-24px float-right"></i>
-                                    </h4>
-                                    <h2 class="mb-5">95,5741</h2>
-                                    <h6 class="card-text">Increased by 5%</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-7 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="clearfix">
-                                        <h4 class="card-title float-left">Yıllık-Ay Villa İstatistik</h4>
-                                        <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-right"></div>
-                                    </div>
-                                    <canvas id="visit-sale-chart" class="mt-4"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Traffic Sources</h4>
-                                    <canvas id="traffic-chart"></canvas>
-                                    <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h1>Villalar</h1>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>#</th>
+                        <th>İsim</th>
+                        <th>Şehir</th>
+                        <th>Alan</th>
+                        <th>Oda</th>
+                        <th>Fiyat</th>
+                        <th>Açıklama</th>
+                        <th>Resim</th>
+                        <th>Sitede Gör</th>
+                        <th>Sil</th>
+                        <th>Güncelle</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.VillaID</td>
+                            <td>@item.Name</td>
+                            <td>@item.City</td>
+                            <td>@item.Area</td>
+                            <td>@item.Room</td>
+                            <td>@item.Price</td>
+                            <td>@item.Description</td>
+                            <td>@item.Image</td>
+                            <td><a href="/Destination/DestinationDetails/@item.VillaID" class="btn btn-outline-info">Sitede Gör</a></td>
+                            <td><a href="/Admin/Villas/DeleteVilla/@item.VillaID" class="btn btn-outline-danger">Sil</a></td>
+                            <td><a href="/Admin/Villas/UpdateVilla/@item.VillaID" class="btn btn-outline-success">Güncelle</a></td>
+                        </tr>
+                    }
+                </table>
+                <a href="/Admin/Villas/AddVilla" class="btn btn-outline-primary">Yeni Villa</a>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">
