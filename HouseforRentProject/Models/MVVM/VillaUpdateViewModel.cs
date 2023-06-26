@@ -2,8 +2,9 @@
 
 namespace HouseforRentProject.Models.MVVM
 {
-    public class VillaUpdateViewModel : BaseEntity
+    public class VillaUpdateViewModel
     {
+        public int VillaID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int Area { get; set; }

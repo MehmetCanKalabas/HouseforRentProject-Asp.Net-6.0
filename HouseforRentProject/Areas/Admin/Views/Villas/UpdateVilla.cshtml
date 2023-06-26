@@ -1,4 +1,4 @@
-﻿@model VillaRegisterViewModel
+﻿@model Villa
 
 @{
     Layout = null;
@@ -211,7 +211,7 @@
                         <h3 class="page-title">
                             <span class="page-title-icon bg-gradient-primary text-white me-2">
                                 <i class="mdi mdi-home"></i>
-                            </span> Villa Ekleme Paneli
+                            </span> Villa Güncelleme Paneli
                         </h3>
                     </div>
 
@@ -220,6 +220,8 @@
                             <div class="card bg-gradient-danger card-img-holder text-white">
                                 <div class="card-body">
                                     <form class="pt-3" method="post">
+
+                                        <input type="hidden" asp-for="VillaID" />
 
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-lg" asp-for="Name" placeholder="Villa Adı">
@@ -257,7 +259,7 @@
                                         </div>
 
                                         <div class="mt-3">
-                                            <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">Kaydet</button>
+                                            <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">Güncelle</button>
                                         </div>
 
                                     </form>

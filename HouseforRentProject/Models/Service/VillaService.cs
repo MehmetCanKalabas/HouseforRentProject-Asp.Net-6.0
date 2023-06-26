@@ -14,10 +14,10 @@ namespace HouseforRentProject.Models.Service
             _context = context;
         }
 
-        public Villa GetByID(int id)
+        public async Task<Villa> GetByID(int id)
         {
-            var values = _context.Villas.Find(id);
-            return values;
+            Villa? villa = await _context.Villas.FindAsync(id);
+            return villa;
         }
 
         public List<Villa> GetAll()
@@ -33,10 +33,31 @@ namespace HouseforRentProject.Models.Service
             return model;
         }
 
-        public void VillaUpdate(VillaUpdateViewModel model)
+        public async Task<Villa> UpdateVilla(Villa model)
         {
             _context.Update(model);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            return model;
+        }
+
+        public bool DeleteVilla(int id)
+        {
+            try
+            {
+                using (Context context = new Context())
+                {
+                    Villa villa = context.Villas.FirstOrDefault(x => x.VillaID == id);
+                    context.Remove(villa);
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
         }
     }
 }
