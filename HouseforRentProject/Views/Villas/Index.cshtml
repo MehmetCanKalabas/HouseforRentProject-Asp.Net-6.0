@@ -2,6 +2,7 @@
 
 @{
     Layout = null;
+    int count = 0;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -202,7 +203,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/Admin/Villas/Index">
+                        <a class="nav-link" href="Villas/Index">
                             <span class="menu-title">Villalar</span>
                             <i class="mdi mdi-medical-bag menu-icon"></i>
                         </a>
@@ -228,8 +229,9 @@
                     </tr>
                     @foreach (var item in Model)
                     {
+                        count++;
                         <tr>
-                            <td>@item.VillaID</td>
+                            <td>@count</td>
                             <td>@item.Name</td>
                             <td>@item.City</td>
                             <td>@item.Area</td>
@@ -238,12 +240,12 @@
                             <td>@item.Description</td>
                             <td>@item.Image</td>
                             <td><a href="/Destination/DestinationDetails/@item.VillaID" class="btn btn-outline-info">Sitede Gör</a></td>
-                            <td><a href="/Admin/Villas/DeleteVilla/@item.VillaID" class="btn btn-outline-danger">Sil</a></td>
-                            <td><a href="/Admin/Villas/UpdateVilla/@item.VillaID" class="btn btn-outline-success">Güncelle</a></td>
+                            <td><a href="/Villas/DeleteVilla/@item.VillaID" class="btn btn-outline-danger">Sil</a></td>
+                            <td><a href="/Villas/UpdateVilla/@item.VillaID" class="btn btn-outline-success">Güncelle</a></td>
                         </tr>
                     }
                 </table>
-                <a href="/Admin/Villas/AddVilla" class="btn btn-outline-primary">Yeni Villa</a>
+                <a href="/Villas/AddVilla" class="btn btn-outline-primary">Yeni Villa</a>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">

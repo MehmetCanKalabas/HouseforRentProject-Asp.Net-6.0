@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HouseforRentProject.Models.Concrete;
+using HouseforRentProject.Models.Service;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HouseforRentProject.Controllers
 {

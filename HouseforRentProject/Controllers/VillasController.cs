@@ -3,12 +3,9 @@ using HouseforRentProject.Models.Entity;
 using HouseforRentProject.Models.MVVM;
 using HouseforRentProject.Models.Service;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace HouseforRentProject.Areas.Admin.Controllers
+namespace HouseforRentProject.Controllers
 {
-    [Area("Admin")]
     public class VillasController : Controller
     {
         private readonly VillaService _villaService;
@@ -25,14 +22,9 @@ namespace HouseforRentProject.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddVilla(int id)
+        public IActionResult AddVilla()
         {
-            var result = _villaService.GetByID(id);
-            if (result == null)
-            {
-                return View();
-            }
-            return RedirectToAction("AddVilla", "Villas");
+            return View();
         }
 
         [HttpPost]
@@ -57,7 +49,7 @@ namespace HouseforRentProject.Areas.Admin.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -79,6 +71,7 @@ namespace HouseforRentProject.Areas.Admin.Controllers
                 if (model != null)
                 {
                     await _villaService.UpdateVilla(model);
+                    return RedirectToAction("Index");
                 }
             }
             return RedirectToAction("Index");
@@ -99,7 +92,7 @@ namespace HouseforRentProject.Areas.Admin.Controllers
                 TempData["Message"] = "HATA";
                 return RedirectToAction(nameof(DeleteVilla));
             }
-            return RedirectToAction("Index", new { message = answer ? "Silindi" : "HATA" });
+            return RedirectToAction("Index");
         }
     }
 }
